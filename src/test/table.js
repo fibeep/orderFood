@@ -54,14 +54,13 @@ describe("Message API endpoints", () => {
   afterEach((done) => {
       table = Table.findOne({number : "1"})
       .then(table => {
-        order = table.order[0];
+        order = table.order
+        Order.deleteOne(order).then(() => {
+          Table.deleteOne(table);
+        })
+        
       })
-      .then(order => {
-            Order.deleteMany({ id: order._id })
-              .then(() => {
-                return Table.deleteMany({ number: ["1"] });
-              })
-              .then(() => {
+      .then(() => {
                 done();
               });
       })
@@ -164,4 +163,4 @@ describe("Message API endpoints", () => {
   //           })
   //       })
   //   })
-});
+;
