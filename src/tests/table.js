@@ -65,7 +65,7 @@ describe("Message API endpoints", () => {
   it("should load all tables", (done) => {
     chai
       .request(app)
-      .get("/messages")
+      .get("/tables")
       .end((err, res) => {
         if (err) {
           done(err);
@@ -77,69 +77,69 @@ describe("Message API endpoints", () => {
   });
 
   it("should get one specific table with its order", (done) => {
-    const message = Message.findOne({ title: "mytitle" });
+    const table = Table.findOne({ number: "1" });
     chai
       .request(app)
-      .get(`/messages/${message._id}`)
+      .get(`/table/${table._id}`)
       .end((err, res) => {
         if (err) {
           done(err);
         }
         expect(res).to.have.status(200);
         expect(res.body).to.be.an("object");
-        expect(res.body.title).to.equal("mytitle");
+        expect(res.body.number).to.equal("1");
         done();
       });
   });
 
-  it("should create a new table", (done) => {
-    User.findOne({ username: "newuser" }).then((user) => {
-      chai
-        .request(app)
-        .post("/messages")
-        .send({
-          title: "anothertitle",
-          body: "anotherbody",
-          author: user,
-        })
-        .end((err, res) => {
-          if (err) {
-            done(err);
-          }
-          expect(res.body).to.be.an("object");
-          expect(res.body).to.have.property("title", "anothertitle");
-          // check that message is actually inserted into database
-          Message.findOne({ title: "anothertitle" }).then((message) => {
-            expect(message).to.be.an("object");
-            done();
-          });
-        });
-    });
-  });
+//   it("should create a new table", (done) => {
+//     User.findOne({ username: "newuser" }).then((user) => {
+//       chai
+//         .request(app)
+//         .post("/messages")
+//         .send({
+//           title: "anothertitle",
+//           body: "anotherbody",
+//           author: user,
+//         })
+//         .end((err, res) => {
+//           if (err) {
+//             done(err);
+//           }
+//           expect(res.body).to.be.an("object");
+//           expect(res.body).to.have.property("title", "anothertitle");
+//           // check that message is actually inserted into database
+//           Message.findOne({ title: "anothertitle" }).then((message) => {
+//             expect(message).to.be.an("object");
+//             done();
+//           });
+//         });
+//     });
+//   });
 
-  it("should update a table number", (done) => {
-    Message.findOne({ title: "mytitle" }).then((message) => {
-      console.log("The message title is: ", message);
-      done();
-      // chai
-      // .request(app)
-      // .put(`/message/${message._id}`)
-      // .send({ title: "somenewtitle" })
-      // .end((err, res) => {
-      //   if (err) {
-      //     done(err);
-      //   }
-      //   expect(res.body).to.be.an("object");
-      //   expect(res.body).to.have.property("title", "somenewtitle");
+//   it("should update a table number", (done) => {
+//     Message.findOne({ title: "mytitle" }).then((message) => {
+//       console.log("The message title is: ", message);
+//       done();
+//       // chai
+//       // .request(app)
+//       // .put(`/message/${message._id}`)
+//       // .send({ title: "somenewtitle" })
+//       // .end((err, res) => {
+//       //   if (err) {
+//       //     done(err);
+//       //   }
+//       //   expect(res.body).to.be.an("object");
+//       //   expect(res.body).to.have.property("title", "somenewtitle");
 
-      //   // check that user is actually inserted into database
-      // Message.findOne({ title: "somenewtitle" }).then((message) => {
-      // expect(message).to.be.an("object");
-      // done();
-      // });
-      // })
-    });
-  });
+//       //   // check that user is actually inserted into database
+//       // Message.findOne({ title: "somenewtitle" }).then((message) => {
+//       // expect(message).to.be.an("object");
+//       // done();
+//       // });
+//       // })
+//     });
+//   });
 
   // it("should delete a table", (done) => {
   //   const message = Message.findOne({ title: "mytitle" });
