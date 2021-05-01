@@ -6,7 +6,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon src/server.js",
+    "test": "mocha src/test --watch"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,9 @@
     "url": "https://github.com/fibeep/orderFood/issues"
   },
   "homepage": "https://github.com/fibeep/orderFood#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "mongoose": "^5.12.7"
+  }
 }

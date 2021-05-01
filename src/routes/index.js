@@ -6,8 +6,9 @@ const orderRoutes = require("./order.js");
 
 const router = express.Router();
 
-router.use("/orders", orderRoutes);
 router.use("/tables", tableRoutes);
+router.use("/orders", orderRoutes);
+
 // Menu, Food, Drink
 
 
