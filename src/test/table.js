@@ -100,35 +100,31 @@ describe("Message API endpoints", () => {
           done();
         });
     })
-
-
     })
   ;
 
-//   it("should create a new table", (done) => {
-//     User.findOne({ username: "newuser" }).then((user) => {
-//       chai
-//         .request(app)
-//         .post("/messages")
-//         .send({
-//           title: "anothertitle",
-//           body: "anotherbody",
-//           author: user,
-//         })
-//         .end((err, res) => {
-//           if (err) {
-//             done(err);
-//           }
-//           expect(res.body).to.be.an("object");
-//           expect(res.body).to.have.property("title", "anothertitle");
-//           // check that message is actually inserted into database
-//           Message.findOne({ title: "anothertitle" }).then((message) => {
-//             expect(message).to.be.an("object");
-//             done();
-//           });
-//         });
-//     });
-//   });
+  it("should create a new table", (done) => {
+      chai
+        .request(app)
+        .post("/tables")
+        .send({
+          number: "2",
+        })
+        .end((err, res) => {
+          if (err) {
+            done(err);
+          }
+          expect(res.body).to.be.an("object");
+          console.log(res.body)
+          expect(res.body.table).to.have.property("number", "2");
+          // check that table is actually inserted into database
+          Table.findOne({ number: "2" }).then((table) => {
+            expect(table).to.be.an("object");
+            console.log(table.number)
+            done();
+          });
+        });
+      })
 
 //   it("should update a table number", (done) => {
 //     Message.findOne({ title: "mytitle" }).then((message) => {

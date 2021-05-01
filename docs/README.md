@@ -18,10 +18,10 @@ Tables are the center-piece of restaurants, they allow the staff to place orders
  Request | Endpoint | Description
  ----------- | ----------- | -----------
  `GET` | /tables | Returns a list of all the tables and their orders.
- `GET` | /table/:id | Returns a single table and its associated order.
- `POST` | /table/:id | Creates a new table.
- `PUT` | /table/:id | Updates a table.
- `DELETE` | /table/:id | Deletes a table.
+ `GET` | /tables/:id | Returns a single table and its associated order.
+ `POST` | /tables/:id | Creates a new table.
+ `PUT` | /tables/:id | Updates a table.
+ `DELETE` | /tables/:id | Deletes a table.
 
 
 

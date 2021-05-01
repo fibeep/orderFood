@@ -33,4 +33,16 @@ router.get('/:number', (req, res) => {
     })
 })
 
+// Route to ADD one Table
+
+router.post('/', (req, res) => {
+    let table = new Table(req.body)
+    table.save().then(tableResult => {
+        return res.json({table: tableResult})
+    })
+    .catch((err) => {
+        throw err.message
+    })
+})
+
 module.exports = router;
