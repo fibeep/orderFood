@@ -58,7 +58,9 @@ Response: Success (200)
 
 ### View Table Status + Order
 
-GET`http://localhost:3000/table:id`<br><br>
+GET`http://localhost:3000/table/:number`<br><br>
+
+*> number is the STRING that indicates the table's number.*
 
 ```javascript
 Response: Success (200)
@@ -78,31 +80,33 @@ Response: Success (200)
 
 ### Create New Table
 
-POST`http://site.com/table/:id`<br><br>
+POST`http://localhost:3000/table/:number`<br><br>
 
 Data | Key | Type
 ---- | --- | ----
-Table number | `"id"` | int
+Table number | `"number"` | str
 
-> Returns the ID of the new table to confirm its creation
+> Returns the number of the new table to confirm its creation
 
 ### Update Table
 
-PUT`http://site.com/table/:id`<br><br>
+PUT`http://localhost:3000/table/:number`<br><br>
+
+*> number is the STRING that indicates the table's number.*
 
 Data | Key | Type
 ---- | --- | ----
-Table number | `"id"` | int
+Table number | `"number"` | str
 
-> Returns the new table ID to confirm its creation
+> Returns the new table number to confirm its creation
 
 ### Delete Table
 
-DELETE`http://site.com/table/:id`<br><br>
+DELETE`http://localhost:3000/table/:number`<br><br>
 
 Data | Key | Type
 ---- | --- | ----
-Table number | `"id"` | int
+Table number | `"number"` | str
 
 > Returns "Table Deleted"
 
@@ -124,44 +128,63 @@ Menus allow the customers to look for what they want to consume inside the resta
 
 
 
-### View ALL Tables
+### View ALL Menus
 
-GET`http://localhost:3000/tables`<br><br>
+GET`http://localhost:3000/menus`<br><br>
 
 ```javascript
 Response: Success (200)
 { 
-    "table": 
+    "menu": 
         {
-        "tableId": "2", 
-        "awaiting": "False", 
-        "order": [
-            ###
-            ###
-            ### ]
-        
+        "name": "Breakfast", 
+        "drinks": [
+            {"Water", 2},
+            {"Orange Juice", 3}
+        ], 
+        "food":  [
+            {"Chicken", 2},
+            {"Meat", 3}
+        ]
         },
-    "table": 
+    "menu": 
         {
-        "tableId": "3", 
-        "awaiting": "True", 
-        "order": [
-            ###
-            ###
-            ### ]
-        
+        "name": "Lunch", 
+        "drinks": [
+            {"Water", 2},
+            {"Orange Juice", 3}
+        ], 
+        "food":  [
+            {"Chicken", 2},
+            {"Meat", 3}
+        ]
         },
     
 }
 ```
+### View ONE Menu
 
+GET`http://localhost:3000/menu/:name`<br><br>
 
+*> name is the unique STRING that identifies a menu in the database.*
 
-
-
-
-
-
+```javascript
+Response: Success (200)
+{ 
+    "menu": 
+        {
+        "name": "Breakfast", 
+        "drinks": [
+            {"Water", 2},
+            {"Orange Juice", 3}
+        ], 
+        "food":  [
+            {"Chicken", 2},
+            {"Meat", 3}
+        ]
+        }
+}
+```
 
 ### Create Menu
 
@@ -169,47 +192,29 @@ POST `http://site.com/menu/`<br><br>
  
 Data | Key | Type
 ---- | --- | ----
-Food | `"foodItem"` | food Object
-Drinks | `"drinkItem"` | drink Object 
+Name | `"name"` | str
+Food | `"food"` | NOT SURE YET
+Drinks | `"drinks"` | NOT SURE YET 
 
-> Returns #####
+> Returns NOT SURE YET
 
-### Get ALL Menus
+### Update Menu
 
-GET`http://site.com/menus`
-
-### Get Menu
-GET`http://site.com/menu/<menuId>`<br><br>
+PUT `http://localhost:3000/menu/`<br><br>
  
 Data | Key | Type
 ---- | --- | ----
-Food Item | `"foodItems"` | array of food Object
-Drink Item | `"drinkItems"` | array of drink Object 
+Name | `"name"` | str
+Food | `"food"` | NOT SURE YET
+Drinks | `"drinks"` | NOT SURE YET 
 
- 
+> Returns NOT SURE YET
 
-```javascript
-Response:
-{ 
-    "menu": [
-        {
-        "foodItems": [
-            "foodItem" : ("Chicken", 3.75),
-            "foodItem" : ("Meat", 4.75)
-        ],
-        "drinkItems" : [
-            "drinkItem" : ("Coke", 2),
-            "drinkItem" : ("Water", 1)
-        ]
-        },
-    ]
-}
-```
-### Update Menu
-PUT`http://site.com/menu/<menuId>`<br><br>
 
 ### Delete Menu
-DELETE`http://site.com/menu/<menuId>`<br><br>
+DELETE`http://localhost:3000/menu/:name`<br><br>
+*> name is the unique STRING that identifies a menu in the database.*
+
 
 ## Orders
 
