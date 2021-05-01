@@ -82,21 +82,28 @@ describe("Message API endpoints", () => {
       });
   });
 
-  // it("should get one specific table with its order", (done) => {
-  //   const table = Table.findOne({ number: "1" });
-  //   chai
-  //     .request(app)
-  //     .get(`/table/${table._id}`)
-  //     .end((err, res) => {
-  //       if (err) {
-  //         done(err);
-  //       }
-  //       expect(res).to.have.status(200);
-  //       expect(res.body).to.be.an("object");
-  //       expect(res.body.number).to.equal("1");
-  //       done();
-  //     });
-  // });
+  it("should get one specific table with its order", (done) => {
+    Table.findOne({ number: "1" }).then((table) => {
+      console.log("Table number is :", table.number)
+      chai
+        .request(app)
+        .get(`/tables/${table.number}`)
+        .end((err, res) => {
+          if (err) {
+            done(err);
+          }
+          console.log("Response Body is :", res.body)
+          console.log("Response Status is :", res.status)
+          expect(res).to.have.status(200);
+          expect(res.body).to.be.an("object");
+          expect(res.body.number).to.equal("1");
+          done();
+        });
+    })
+
+
+    })
+  ;
 
 //   it("should create a new table", (done) => {
 //     User.findOne({ username: "newuser" }).then((user) => {
@@ -163,4 +170,4 @@ describe("Message API endpoints", () => {
   //           })
   //       })
   //   })
-;
+

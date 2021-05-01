@@ -19,4 +19,18 @@ router.get('/', (req,res) => {
         throw err.message
     })
 })
+
+// Route to get ONE specific table
+
+router.get('/:number', (req, res) => {
+    // GET specific table object using findOne
+    Table.findOne({number: req.params.number})
+    .then(result => {
+        // Returns message as JSON object
+        return res.json(result)
+    }).catch(err => {
+        throw err.message
+    })
+})
+
 module.exports = router;
