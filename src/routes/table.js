@@ -49,11 +49,11 @@ router.post('/', (req, res) => {
 
 // Route to UPDATE one Table
 
-router.put("/:_id", (req, res) => {  
-  Table.findOneAndUpdate({_id: req.params._id}, req.body)
+router.put("/:number", (req, res) => {  
+  Table.findOneAndUpdate({number: req.params.number}, req.body)
     .then(() => {
         console.log("Update Succesfully")
-      return Table.findOne({ _id: req.params._id });
+      return Table.findOne({ number: req.body.number });
     })
     .then((table) => {
       return res.json({ table });
