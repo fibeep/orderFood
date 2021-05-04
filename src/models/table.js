@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const TableSchema = new Schema(
   {
-    number: { type: String, required: true },
+    number: { type: String, required: true, unique: true },
     order: { type: Schema.Types.ObjectId, ref: "Order", required: false },
   },
   { timestamps: { createdAt: "created_at" } }

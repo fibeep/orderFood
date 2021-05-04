@@ -36,6 +36,7 @@ router.get('/:number', (req, res) => {
 // Route to ADD one Table
 
 router.post('/', (req, res) => {
+    console.log(req.body)
     let table = new Table(req.body)
     table.save().then(tableResult => {
         return res.json({table: tableResult})
@@ -44,5 +45,24 @@ router.post('/', (req, res) => {
         throw err.message
     })
 })
+
+
+// Route to UPDATE one Table
+
+router.put("/:_id", (req, res) => {  
+  Table.findOneAndUpdate({_id: req.params._id}, req.body)
+    .then(() => {
+        console.log("Update Succesfully")
+      return Table.findOne({ _id: req.params._id });
+    })
+    .then((table) => {
+      return res.json({ table });
+    })
+    .catch((err) => {
+      throw err.message;
+    });
+});
+
+
 
 module.exports = router;
