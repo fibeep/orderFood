@@ -63,6 +63,23 @@ router.put("/:number", (req, res) => {
     });
 });
 
+// Route to DELETE one table
+router.delete("/:number", (req, res) => {
+  Table.findOneAndDelete(req.params.number)
+    .then((result) => {
+      if (result === null) {
+        return res.json({ message: "Table does not exist." });
+      }
+      return res.json({
+        message: "Successfully deleted.",
+         number: req.params.number,
+      });
+    })
+    .catch((err) => {
+      throw err.message;
+    });
+});
+
 
 
 module.exports = router;

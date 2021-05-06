@@ -52,6 +52,7 @@ describe("Message API endpoints", () => {
   });
 
   afterEach((done) => {
+    // deleteMany doesn actually delete both, only "1"
     Table.deleteMany({ number: ["1", "2"] })
     .then(() => {
       return Order.deleteMany({food: ["Chicken"]})
@@ -79,26 +80,26 @@ it("should load all tables", (done) => {
 // FOLLOWING TEST ONLY WORKS WHEN TABLE IS ALREADY INSIDE THE DATABASE
 // IT WILL NOT WORK USING THE BEFORE / AFTER TEST SCENARIOS
 
-// it("should get one specific table with its order", (done) => {
-//   Table.findOne({ number: "1" }).then((table) => {
-//     console.log("Table number is :", table.number)
-//     chai
-//       .request(app)
-//       .get(`/tables/${table.number}`)
-//       .end((err, res) => {
-//         if (err) {
-//           done(err);
-//         }
-//         console.log("Response Body is :", res.body)
-//         console.log("Response Status is :", res.status)
-//         expect(res).to.have.status(200);
-//         expect(res.body).to.be.an("object");
-//         expect(res.body.number).to.equal("1");
-//         done();
-//       });
-//   })
-//   })
-// ;
+it("should get one specific table with its order", (done) => {
+  Table.findOne({ number: "1" }).then((table) => {
+    console.log("Table number is :", table.number)
+    chai
+      .request(app)
+      .get(`/tables/${table.number}`)
+      .end((err, res) => {
+        if (err) {
+          done(err);
+        }
+        console.log("Response Body is :", res.body)
+        console.log("Response Status is :", res.status)
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.an("object");
+        expect(res.body.number).to.equal("1");
+        done();
+      });
+  })
+  })
+;
 
 it("should create a new table", (done) => {
   chai
@@ -123,41 +124,61 @@ it("should create a new table", (done) => {
     });
 });
 
-it("should update a table number", (done) => {
-  chai
-    .request(app)
-    .put(`/table/1`)
-    .send({ number: "5" })
-    .end((err, res) => {
-      if (err) {
-        done(err);
-      }
-      expect(res.body).to.be.an("object");
-      console.log("RESPONSE INFO: ", res.body);
-      expect(res.body).to.have.property("number", "5");
-
-      // check that table is actually inserted into database
-      Table.findOne({ number: "5" }).then((table) => {
-        console.log("NEW TABLE DATA :", table);
-        expect(table).to.be.an("object");
-        done();
-      });
-    });
-});
-
-// it("should delete a table", (done) => {
-//   const message = Message.findOne({ title: "mytitle" });
-//   chai.request(app)
-//       .delete(`/messages/${message._id}`)
-//       .end((err, res) => {
-//           if (err) { done(err) }
-//           expect(res.body.message).to.equal('Successfully deleted.')
-//           expect(res.body._id).to.equal(message._id)
-
-//           // check that user is actually deleted from database
-//           Message.findOne({title: 'mytitle'}).then(message => {
-//               expect(message).to.equal(null)
-//               done()
-//           })
-//       })
+// it("should update a table number", (done) => {
+//   Table.findOne({number: "2"}).then(table => {
+//     console.log(table)
 //   })
+//   chai
+//     .request(app)
+//     .put(`/table/2`)
+//     .send({ number: "5" })
+//     .end((err, res) => {
+//       if (err) {
+//         done(err);
+//       }
+//       expect(res.body).to.be.an("object");
+//       console.log("RESPONSE INFO: ", res.body.table);
+//       expect(res.body.table).to.have.property("number", "5");
+
+//       // check that table is actually inserted into database
+//       Table.findOne({ number: "5" }).then((table) => {
+//         console.log("NEW TABLE DATA :", table);
+//         expect(table).to.be.an("object");
+//         done();
+//       });
+//     });
+// });
+
+it("should delete a table", (done) => {
+      Table.findOne({ number: "2" }).then((table) => {
+        console.log("Table number is :", table.number);
+        chai
+          .request(app)
+          .get(`/tables/${table.number}`)
+          .end((err, res) => {
+            if (err) {
+              done(err);
+            }
+            console.log("Response Body is :", res.body);
+            console.log("Response Status is :", res.status);
+            expect(res).to.have.status(200);
+            expect(res.body).to.be.an("object");
+            expect(res.body.number).to.equal("2");
+          })
+          .then(() => {
+            Table.findOne({ number: "2" }).then(table => {
+              chai.request(app)
+              .delete(`/tables/${table.number}`)
+              .end((err, res) => {
+                if (err) { done(err) }
+                  expect(res.body.message).to.equal('Successfully deleted.')
+                  expect(res.body.number).to.equal(table.number)
+                  Table.findOne({number: '2'}).then(table => {
+                    expect(table).to.equal(null)
+                    done()
+                  })
+              })
+            })
+          })
+      });
+    })
