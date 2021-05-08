@@ -143,7 +143,7 @@ Response: Success (200)
 }
 ```
 
-### View ONE specific orders
+### View ONE specific order
 
 GET`http://localhost:5000/orders/:id`<br><br>
 
@@ -179,7 +179,7 @@ Drinks | `"drink"` | string
 
 ### Update Order
 
-PUT `http://localhost:5000/order/:number`<br><br>
+PUT `http://localhost:5000/orders/:number`<br><br>
  
 *> the number is the number of the table associated
 with the order*
@@ -193,7 +193,7 @@ Drinks | `"drink"` | string
 
 ### Delete Order
 
-DELETE `http://localhost:5000/order/:number`<br><br>
+DELETE `http://localhost:5000/orders/:number`<br><br>
  
 *> the number is the number of the table associated
 with the order*
