@@ -62,7 +62,7 @@ describe("Orders Endpoints", () => {
 it("should load all orders", (done) => {
   chai
     .request(app)
-    .get("/order")
+    .get("/orders")
     .end((err, res) => {
       if (err) {
         done(err);
