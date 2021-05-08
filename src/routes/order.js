@@ -20,6 +20,17 @@ router.get("/", (req, res) => {
 
 // Route to GET one Order
 
+router.get("/:id", (req, res) => {
+  // GET all orders using .find()
+  Order.findById(req.params.id)
+    .then((order) => {
+      // Returns tables as JSON list
+      return res.json({ order });
+    })
+    .catch((err) => {
+      throw err.message;
+    });
+});
 
 
 // Route to CREATE one order:

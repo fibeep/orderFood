@@ -27,7 +27,7 @@ Tables are the center-piece of restaurants, they allow the staff to place orders
 
 ### View ALL Tables
 
-GET`http://localhost:3000/tables`<br><br>
+GET`http://localhost:5000/tables`<br><br>
 
 ```javascript
 Response: Success (200)
@@ -58,7 +58,7 @@ Response: Success (200)
 
 ### View Table Status + Order
 
-GET`http://localhost:3000/table/:number`<br><br>
+GET`http://localhost:5000/table/:number`<br><br>
 
 *> number is the STRING that indicates the table's number.*
 
@@ -80,7 +80,7 @@ Response: Success (200)
 
 ### Create New Table
 
-POST`http://localhost:3000/table/:number`<br><br>
+POST`http://localhost:5000/table/:number`<br><br>
 
 Data | Key | Type
 ---- | --- | ----
@@ -90,7 +90,7 @@ Table number | `"number"` | str
 
 ### Update Table
 
-PUT`http://localhost:3000/table/:number`<br><br>
+PUT`http://localhost:5000/table/:number`<br><br>
 
 *> number is the STRING that indicates the table's number.*
 
@@ -102,7 +102,7 @@ Table number | `"number"` | str
 
 ### Delete Table
 
-DELETE`http://localhost:3000/table/:number`<br><br>
+DELETE`http://localhost:5000/table/:number`<br><br>
 
 Data | Key | Type
 ---- | --- | ----
@@ -129,7 +129,7 @@ In order for a restaurant to properly serve its customers, it must record its cu
 
 ### View ALL orders
 
-GET`http://localhost:3000/orders`<br><br>
+GET`http://localhost:5000/orders`<br><br>
 
 ```javascript
 Response: Success (200)
@@ -145,7 +145,7 @@ Response: Success (200)
 
 ### View ONE specific orders
 
-GET`http://localhost:3000/orders/:id`<br><br>
+GET`http://localhost:5000/orders/:id`<br><br>
 
 *> id is the order's id*
 
@@ -164,7 +164,7 @@ Response: Success (200)
 
 ### Create Order
 
-POST `http://localhost:3000/orders/:number`<br><br>
+POST `http://localhost:5000/orders/:number`<br><br>
  
 *> the number is the number of the table associated
 with the order*
@@ -179,7 +179,7 @@ Drinks | `"drink"` | string
 
 ### Update Order
 
-PUT `http://localhost:3000/order/:number`<br><br>
+PUT `http://localhost:5000/order/:number`<br><br>
  
 *> the number is the number of the table associated
 with the order*
@@ -193,7 +193,7 @@ Drinks | `"drink"` | string
 
 ### Delete Order
 
-DELETE `http://localhost:3000/order/:number`<br><br>
+DELETE `http://localhost:5000/order/:number`<br><br>
  
 *> the number is the number of the table associated
 with the order*
@@ -231,7 +231,7 @@ Menus allow the customers to look for what they want to consume inside the resta
 
 ### View ALL Menus
 
-GET`http://localhost:3000/menus`<br><br>
+GET`http://localhost:5000/menus`<br><br>
 
 ```javascript
 Response: Success (200)
@@ -265,7 +265,7 @@ Response: Success (200)
 ```
 ### View ONE Menu
 
-GET`http://localhost:3000/menu/:name`<br><br>
+GET`http://localhost:5000/menu/:name`<br><br>
 
 *> name is the unique STRING that identifies a menu in the database.*
 
@@ -301,7 +301,7 @@ Drinks | `"drinks"` | NOT SURE YET
 
 ### Update Menu
 
-PUT `http://localhost:3000/menu/`<br><br>
+PUT `http://localhost:5000/menu/`<br><br>
  
 Data | Key | Type
 ---- | --- | ----
@@ -313,5 +313,5 @@ Drinks | `"drinks"` | NOT SURE YET
 
 
 ### Delete Menu
-DELETE`http://localhost:3000/menu/:name`<br><br>
+DELETE`http://localhost:5000/menu/:name`<br><br>
 *> name is the unique STRING that identifies a menu in the database.*
