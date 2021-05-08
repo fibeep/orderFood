@@ -25,7 +25,7 @@ after((done) => {
   done();
 });
 
-describe("Message API endpoints", () => {
+describe("Tables Endpoints", () => {
   beforeEach((done) => {
     const sampleTable = new Table({
       number: "1",
