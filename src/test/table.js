@@ -124,30 +124,30 @@ it("should create a new table", (done) => {
     });
 });
 
-// it("should update a table number", (done) => {
-//   Table.findOne({number: "2"}).then(table => {
-//     console.log(table)
-//   })
-//   chai
-//     .request(app)
-//     .put(`/table/2`)
-//     .send({ number: "5" })
-//     .end((err, res) => {
-//       if (err) {
-//         done(err);
-//       }
-//       expect(res.body).to.be.an("object");
-//       console.log("RESPONSE INFO: ", res.body.table);
-//       expect(res.body.table).to.have.property("number", "5");
+it("should update a table number", (done) => {
+  Table.findOne({number: "2"}).then(table => {
+    console.log(table)
+  })
+  chai
+    .request(app)
+    .put(`/table/2`)
+    .send({ number: "5" })
+    .end((err, res) => {
+      if (err) {
+        done(err);
+      }
+      expect(res.body).to.be.an("object");
+      console.log("RESPONSE INFO: ", res.body.table);
+      expect(res.body.table).to.have.property("number", "5");
 
-//       // check that table is actually inserted into database
-//       Table.findOne({ number: "5" }).then((table) => {
-//         console.log("NEW TABLE DATA :", table);
-//         expect(table).to.be.an("object");
-//         done();
-//       });
-//     });
-// });
+      // check that table is actually inserted into database
+      Table.findOne({ number: "5" }).then((table) => {
+        console.log("NEW TABLE DATA :", table);
+        expect(table).to.be.an("object");
+        done();
+      });
+    });
+});
 
 it("should delete a table", (done) => {
       Table.findOne({ number: "2" }).then((table) => {

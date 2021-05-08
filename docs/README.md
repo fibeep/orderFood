@@ -18,10 +18,10 @@ Tables are the center-piece of restaurants, they allow the staff to place orders
  Request | Endpoint | Description
  ----------- | ----------- | -----------
  `GET` | /tables | Returns a list of all the tables and their orders.
- `GET` | /tables/:id | Returns a single table and its associated order.
- `POST` | /tables/:id | Creates a new table.
- `PUT` | /tables/:id | Updates a table.
- `DELETE` | /tables/:id | Deletes a table.
+ `GET` | /tables/:number | Returns a single table and its associated order.
+ `POST` | /tables/:number | Creates a new table.
+ `PUT` | /tables/:number | Updates a table.
+ `DELETE` | /tables/:number | Deletes a table.
 
 
 
@@ -108,7 +108,108 @@ Data | Key | Type
 ---- | --- | ----
 Table number | `"number"` | str
 
-> Returns "Table Deleted"
+> Returns deletion message as well as (now deleted) table number
+
+
+
+## Orders
+
+In order for a restaurant to properly serve its customers, it must record its customers' orders and associate them with a table. The orders endpoint will convey the table as well as the items that guests order.
+
+### Endpoints
+
+ Request | Endpoint | Description
+ ----------- | ----------- | -----------
+ `GET` | /orders | Returns a list of all the orders and their tables.
+ `GET` | /order/:id | Returns a single order and its associated table.
+ `POST` | /order/:number | Creates a new order for a given table.
+ `PUT` | /order/:number | Updates an order.
+ `DELETE` | /order/:number | Deletes an order.
+
+
+### View ALL orders
+
+GET`http://localhost:3000/orders`<br><br>
+
+```javascript
+Response: Success (200)
+{ 
+    "order": 
+        {
+        "table": "2", 
+        "drink": ["water", "coke"], 
+        "food": ["chicken"]
+        },    
+}
+```
+
+### View ONE specific orders
+
+GET`http://localhost:3000/orders/:id`<br><br>
+
+*> id is the order's id*
+
+```javascript
+Response: Success (200)
+{ 
+    "order": 
+        {
+        "table": "2", 
+        "drink": ["water", "coke"], 
+        "food": ["chicken"]
+        },    
+}
+```
+
+
+### Create Order
+
+POST `http://localhost:3000/orders/:number`<br><br>
+ 
+*> the number is the number of the table associated
+with the order*
+
+Data | Key | Type
+---- | --- | ----
+Food | `"food"` | string
+Drinks | `"drink"` | string
+Table number | `"table"` | string
+
+> Returns the items in the order, as well as the table to ensure its creation.
+
+### Update Order
+
+PUT `http://localhost:3000/order/:number`<br><br>
+ 
+*> the number is the number of the table associated
+with the order*
+
+Data | Key | Type
+---- | --- | ----
+Food | `"food"` | string
+Drinks | `"drink"` | string
+
+> Returns the new items in the order, as well as the table to ensure its creation.
+
+### Delete Order
+
+DELETE `http://localhost:3000/order/:number`<br><br>
+ 
+*> the number is the number of the table associated
+with the order*
+
+Data | Key | Type
+---- | --- | ----
+Table number | `"number"` | str
+
+> Returns deletion message as well as (now deleted) table number
+
+# Coming Soon
+
+## Food and Drink Items
+
+TBD
+
 
 ## Menus
 
@@ -214,54 +315,3 @@ Drinks | `"drinks"` | NOT SURE YET
 ### Delete Menu
 DELETE`http://localhost:3000/menu/:name`<br><br>
 *> name is the unique STRING that identifies a menu in the database.*
-
-
-## Orders
-
-### Create Order
-
-POST `http://site.com/order/new`<br><br>
- 
-Data | Key | Type
----- | --- | ----
-Food | `"foodItem"` | food Object
-Drinks | `"drinkItem"` | drink Object 
-
-> Returns #####
-
-### Get Order
-GET`http://site.com/<tableId>/order`<br><br>
- 
-Data | Key | Type
----- | --- | ----
-Food Item | `"foodItems"` | array of food Object
-Drink Item | `"drinkItems"` | array of drink Object 
-
- 
-
-```javascript
-Response:
-{ 
-    "menu": [
-        {
-        "foodItems": [
-            "foodItem" : ("Chicken", 3.75),
-            "foodItem" : ("Meat", 4.75)
-        ],
-        "drinkItems" : [
-            "drinkItem" : ("Coke", 2),
-            "drinkItem" : ("Water", 1)
-        ]
-        },
-    ]
-}
-```
-### Get ALL orders
-
-GET`http://site.com/<tableId>/orders`<br><br>
-
-TBD INFO
-
-## Food and Drink Items
-
-TBD
