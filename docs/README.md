@@ -173,7 +173,7 @@ Data | Key | Type
 ---- | --- | ----
 Food | `"food"` | string
 Drinks | `"drink"` | string
-Table number | `"table"` | string
+
 
 > Returns the items in the order, as well as the table to ensure its creation.
 

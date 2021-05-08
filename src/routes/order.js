@@ -18,6 +18,10 @@ router.get("/", (req, res) => {
     });
 });
 
+// Route to GET one Order
+
+
+
 // Route to CREATE one order:
 
 router.post("/:number", (req, res) => {
