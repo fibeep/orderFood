@@ -52,23 +52,29 @@ router.get("/:id", (req, res) => {
 
 // Route to CREATE one order:
 
-router.post("/:number", (req, res) => {
+router.post("/:tableNumber", (req, res) => {
+  
   console.log(req.body);
-  let order = new Order({
+  const order = new Order({
     food: req.body.food,
     drink: req.body.drink,
   });
-  Table.findOne({ number: req.params.number })
+
+  Table.findOne({ number: req.params.tableNumber })
     .then((table) => {
       console.log(table);
-      order.table = table
-      table.order = order;
-      return table.save();
+      order.table = table._id
+      
+      return Promise.all([
+        order.save(),
+        table.save()
+      ])
+    })
+    .then(([order, table]) => {
+      table.order = order._id;
+      return table.save()
     })
     .then(() => {
-      return order.save()
-    })
-    .then((order) => {
       return res.json({ order: order });
     })
     .catch((err) => {
