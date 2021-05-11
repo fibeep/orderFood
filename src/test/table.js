@@ -164,6 +164,7 @@ it("should delete a table", (done) => {
             expect(res).to.have.status(200);
             expect(res.body).to.be.an("object");
             expect(res.body.number).to.equal("2");
+            done()
           })
           .then(() => {
             Table.findOne({ number: "2" }).then(table => {

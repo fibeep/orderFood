@@ -35,9 +35,7 @@ Response: Success (200)
     "table": 
         {
         "tableId": "2", 
-        "awaiting": "False", 
         "order": [
-            ###
             ###
             ### ]
         
@@ -45,7 +43,6 @@ Response: Success (200)
     "table": 
         {
         "tableId": "3", 
-        "awaiting": "True", 
         "order": [
             ###
             ###
@@ -67,8 +64,7 @@ Response: Success (200)
 { 
     "table": 
         {
-        "tableId": "2", 
-        "awaiting": "False", 
+        "tableId": "2",  
         "order": [
             ###
             ###
