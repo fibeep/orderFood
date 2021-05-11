@@ -10,21 +10,21 @@ const Table = require("../models/table");
 
 router.get('/', (req,res) => {
     // GET all tables using .find()
-    Table.find()
-    .then((tables) =>{
+    Table.find().populate("order").lean()
+      .then((tables) => {
         // Returns tables as JSON list
-        return res.json({tables})
-    })
-    .catch((err)=>{
-        throw err.message
-    })
+        return res.json({ tables });
+      })
+      .catch((err) => {
+        throw err.message;
+      });
 })
 
 // Route to get ONE specific table
 
 router.get('/:number', (req, res) => {
     // GET specific table object using findOne
-    Table.findOne({number: req.params.number})
+    Table.findOne({number: req.params.number}).populate("order").lean()
     .then(result => {
         // Returns message as JSON object
         return res.json(result)

@@ -67,7 +67,7 @@ router.post("/:tableNumber", (req, res) => {
       
       return Promise.all([
         order.save(),
-        table.save()
+        table
       ])
     })
     .then(([order, table]) => {
