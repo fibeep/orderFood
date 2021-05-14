@@ -7,6 +7,15 @@
 
 > When going to a restaurant, most customers face the same issue: they want to order food, and the waiter/tress is nowhere to be seen. With Order Food, customers will be able to quickly relay their orders to the kitchen!
 
+## How to Install:
+1) Clone this repo in your terminal:
+` git clone https://github.com/fibeep/orderFood`
+2) Open the folder and run the folling command:
+`npm install`
+3) To Launch, run:
+`npm start`
+
+
 # Data
 
 ## Tables
