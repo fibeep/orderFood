@@ -7,7 +7,7 @@ const app = express();
 
 // Use Body Parser
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
   const now = new Date().toString();

@@ -10,6 +10,7 @@ const Table = require("../models/table");
 
 router.get('/', (req,res) => {
     // GET all tables using .find()
+    console.log(req.body)
     Table.find().populate("order").lean()
       .then((tables) => {
         // Returns tables as JSON list
@@ -36,7 +37,7 @@ router.get('/:number', (req, res) => {
 // Route to ADD one Table
 
 router.post('/', (req, res) => {
-    console.log(req.body)
+    console.log("Request body is", req.body)
     let table = new Table(req.body)
     table.save().then(tableResult => {
         return res.json({table: tableResult})
