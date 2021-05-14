@@ -34,21 +34,20 @@ router.get("/:id", (req, res) => {
 
 // Route to DELET one Order
 
-// router.delete("/:number", (req, res) => {
-//   Table.findOneAndDelete(req.params.number)
-//     .then((result) => {
-//       if (result === null) {
-//         return res.json({ message: "Table does not exist." });
-//       }
-//       return res.json({
-//         message: "Successfully deleted.",
-//          number: req.params.number,
-//       });
-//     })
-//     .catch((err) => {
-//       throw err.message;
-//     });
-// })
+router.delete("/:id", (req, res) => {
+  Order.findByIdAndDelete(req.params.id)
+    .then((result) => {
+      if (result === null) {
+        return res.json({ message: "Order does not exist." });
+      }
+      return res.json({
+        message: "Successfully deleted.",
+      });
+    })
+    .catch((err) => {
+      throw err.message;
+    });
+})
 
 // Route to CREATE one order:
 
