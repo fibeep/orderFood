@@ -215,6 +215,26 @@ with the order_
 
 > Returns the items in the order, as well as the table to ensure its creation.
 
+
+### Delete Order
+
+DELETE `http://localhost:5000/orders/:id`<br><br>
+
+_> the id is the order id
+_
+
+
+> Returns deletion message
+
+``` 
+{
+    "message": "Successfully deleted."
+}
+```
+
+# Coming Soon
+
+
 ### Update Order
 
 PUT `http://localhost:5000/orders/:number`<br><br>
@@ -228,21 +248,6 @@ with the order_
 | Drinks | `"drink"` | string |
 
 > Returns the new items in the order, as well as the table to ensure its creation.
-
-### Delete Order
-
-DELETE `http://localhost:5000/orders/:number`<br><br>
-
-_> the number is the number of the table associated
-with the order_
-
-| Data         | Key        | Type |
-| ------------ | ---------- | ---- |
-| Table number | `"number"` | str  |
-
-> Returns deletion message as well as (now deleted) table number
-
-# Coming Soon
 
 ## Food and Drink Items
 
